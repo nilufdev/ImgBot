@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,8 +21,7 @@ class _BotChatState extends State<BotChat> {
     );
 
     if (image != null) {
-      // Read as bytes to support Google Photos content URIs
-      final bytes = await image.readAsBytes();
+      final bytes = await image.readAsBytes(); // Works for Google Photos too
       setState(() {
         pickedImageBytes = bytes;
       });
