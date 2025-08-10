@@ -11,7 +11,21 @@ class BotChat extends StatefulWidget {
 
 class _BotChatState extends State<BotChat> {
   // logic 
+  PlatformFile? pickedImage;
 
+  // pick image from file
+  Future<void> pickImage() async {
+    final result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+      withData: true,
+    );
+    if(result != null) {
+      setState() {
+        pickedImage = result.files.first,
+      }
+    }
+  }
+  
   // ui
   @override
   Widget build(BuildContext context) {
