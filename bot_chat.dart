@@ -63,7 +63,7 @@ class _BotChatState extends State<BotChat> {
                 prefixIcon: const Icon(Icons.pending, color: Colors.black),
                 filled: true,
                 fillColor: Colors.grey[200],
-                border: OutLineInputBorder(
+                border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                   borderSide: BorderSide.none,
                 ),
