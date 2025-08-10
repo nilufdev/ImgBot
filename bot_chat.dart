@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:file_picker/file_picker.dart';
+import 'package:image_picker/image_picker.dart';
 
 class BotChat extends StatefulWidget {
   const BotChat({super.key});
@@ -10,17 +10,18 @@ class BotChat extends StatefulWidget {
 }
 
 class _BotChatState extends State<BotChat> {
-  PlatformFile? pickedImage;
+  File? pickedImage;
 
   Future<void> pickImage() async {
-    final result = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      withData: false, // no need to load bytes
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 100, // Keep original quality
     );
 
-    if (result != null) {
+    if (image != null) {
       setState(() {
-        pickedImage = result.files.first;
+        pickedImage = File(image.path);
       });
     }
   }
@@ -63,31 +64,13 @@ class _BotChatState extends State<BotChat> {
                         ),
                       ),
                     )
-                  : Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
-                          child: Image.file(
-                            File(pickedImage!.path!),
-                            height: 340,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue,
-                          ),
-                          onPressed: pickImage,
-                          child: const Text(
-                            'Select New Image',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ],
+                  : ClipRRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.file(
+                        pickedImage!,
+                        height: 340,
+                        fit: BoxFit.cover,
+                      ),
                     ),
             ),
             const SizedBox(height: 20),
@@ -117,7 +100,6 @@ class _BotChatState extends State<BotChat> {
                 ),
               ),
             ),
-            const SizedBox(height: 30),
           ],
         ),
       ),
