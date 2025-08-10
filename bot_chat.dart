@@ -25,7 +25,7 @@ class _BotChatState extends State<BotChat> {
           ),
         ) ,
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
       ),
 
       body: Padding(
