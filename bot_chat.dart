@@ -5,7 +5,7 @@ class BotChat extends StatefulWidget {
 
   @override
   State<BotChat> createState() {
-    _BotChatState();
+    return _BotChatState();
   }
 }
 
