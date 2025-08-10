@@ -55,7 +55,7 @@ class _BotChatState extends State<BotChat> {
                 decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(30),
-                )
+                ),
                 child: const Center(
                   child: Text(
                     'Select an Image',
