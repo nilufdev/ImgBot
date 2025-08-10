@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -10,18 +10,20 @@ class BotChat extends StatefulWidget {
 }
 
 class _BotChatState extends State<BotChat> {
-  File? pickedImage;
+  Uint8List? pickedImageBytes;
 
   Future<void> pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 100, // Keep original quality
+      imageQuality: 100,
     );
 
     if (image != null) {
+      // Read as bytes to support Google Photos content URIs
+      final bytes = await image.readAsBytes();
       setState(() {
-        pickedImage = File(image.path);
+        pickedImageBytes = bytes;
       });
     }
   }
@@ -46,7 +48,7 @@ class _BotChatState extends State<BotChat> {
           children: [
             GestureDetector(
               onTap: pickImage,
-              child: pickedImage == null
+              child: pickedImageBytes == null
                   ? Container(
                       height: 340,
                       decoration: BoxDecoration(
@@ -66,8 +68,8 @@ class _BotChatState extends State<BotChat> {
                     )
                   : ClipRRect(
                       borderRadius: BorderRadius.circular(30),
-                      child: Image.file(
-                        pickedImage!,
+                      child: Image.memory(
+                        pickedImageBytes!,
                         height: 340,
                         fit: BoxFit.cover,
                       ),
