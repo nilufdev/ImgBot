@@ -55,7 +55,7 @@ class _BotChatState extends State<BotChat> {
                 decoration: BoxDecoration(
                   color: Colors.black12,
                   borderRadius: BorderRadius.circular(30),
-                ),
+                )
                 child: const Center(
                   child: Text(
                     'Select an Image',
@@ -70,7 +70,7 @@ class _BotChatState extends State<BotChat> {
               : Column(
                   children: [
                     // display selected image
-                    ClipRect(
+                    ClipRRect(
                       borderRadius: BorderRadius.circular(30),
                       child: Image.memory(
                         pickedImage!.bytes!,
