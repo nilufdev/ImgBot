@@ -1,3 +1,0 @@
-<pre>
-IOS ipa 
-</pre>
