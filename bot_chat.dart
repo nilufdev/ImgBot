@@ -77,7 +77,7 @@ class _BotChatState extends State<BotChat> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
               ),
-              // onPressed: 
+              onPressed: () {}, 
               child: const Text(
                 'Generate Answer',
                 style: TextStyle(
