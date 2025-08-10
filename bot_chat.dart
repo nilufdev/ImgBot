@@ -21,9 +21,9 @@ class _BotChatState extends State<BotChat> {
       withData: true,
     );
     if(result != null) {
-      setState() {
+      setState(() {
         pickedImage = result.files.first;
-      }
+      });
     }
   }
   
