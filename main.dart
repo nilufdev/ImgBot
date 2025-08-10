@@ -12,7 +12,7 @@ class ImgBot extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: BotChat();
+      home: BotChat(),
     );
   }
 }
