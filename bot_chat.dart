@@ -34,9 +34,7 @@ class _BotChatState extends State<BotChat> {
           children: [
             // image section
             GestureDetector(
-              onTap: () {
-                // todo
-              }
+              onTap: () {}, 
               child: Container(
                 height: 340,
                 decoration: BoxDecoration(
