@@ -11,7 +11,7 @@ class BotChat extends StatefulWidget {
 }
 
 class _BotChatState extends State<BotChat> {
-  // logic 
+  // logic
   PlatformFile? pickedImage;
 
   // pick image from file
@@ -20,13 +20,13 @@ class _BotChatState extends State<BotChat> {
       type: FileType.image,
       withData: true,
     );
-    if(result != null) {
+    if (result != null) {
       setState(() {
         pickedImage = result.files.first;
       });
     }
   }
-  
+
   // ui
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,10 @@ class _BotChatState extends State<BotChat> {
             color: Colors.black,
             fontWeight: FontWeight.bold,
           ),
-        ) ,
+        ),
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
-
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ListView(
@@ -50,57 +49,53 @@ class _BotChatState extends State<BotChat> {
             // select image
             GestureDetector(
               onTap: pickImage,
-              child: pickedImage == null ? Container(
-                height: 340,
-                decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: const Center(
-                  child: Text(
-                    'Select an Image',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
-              : Column(
-                  children: [
-                    // display selected image
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.memory(
-                        pickedImage!.bytes!,
-                        height: 340,
-                        fit: BoxFit.cover,
+              child: pickedImage == null
+                  ? Container(
+                      height: 340,
+                      decoration: BoxDecoration(
+                        color: Colors.black12,
+                        borderRadius: BorderRadius.circular(30),
                       ),
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    ElevatedButton(
-                      style: ElavatedButton.styleFrom(
-                        backgroundColor: Colors.blue,
-                      ),
-                      onPressed: pickImage,
-                      child: const Text(
-                        'Select New Image',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
+                      child: const Center(
+                        child: Text(
+                          'Select an Image',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
+                    )
+                  : Column(
+                      children: [
+                        // display selected image
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.memory(
+                            pickedImage!.bytes!,
+                            height: 340,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.blue,
+                          ),
+                          onPressed: pickImage,
+                          child: const Text(
+                            'Select New Image',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    
-                  ],
-              ),
             ),
-            
             const SizedBox(height: 20),
-
             // prompt input
             TextField(
               decoration: InputDecoration(
@@ -114,15 +109,13 @@ class _BotChatState extends State<BotChat> {
                 ),
               ),
             ),
-            
             const SizedBox(height: 20),
-
             // generate button
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
               ),
-              onPressed: () {}, 
+              onPressed: () {},
               child: const Text(
                 'Generate Answer',
                 style: TextStyle(
@@ -131,18 +124,10 @@ class _BotChatState extends State<BotChat> {
                 ),
               ),
             ),
-
             const SizedBox(height: 30),
-          ]
+          ],
         ),
       ),
     );
   }
 }
-
-
-
-
-
-
-
