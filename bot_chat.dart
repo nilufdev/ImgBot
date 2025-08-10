@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -5,21 +6,18 @@ class BotChat extends StatefulWidget {
   const BotChat({super.key});
 
   @override
-  State<BotChat> createState() {
-    return _BotChatState();
-  }
+  State<BotChat> createState() => _BotChatState();
 }
 
 class _BotChatState extends State<BotChat> {
-  // logic
   PlatformFile? pickedImage;
 
-  // pick image from file
   Future<void> pickImage() async {
     final result = await FilePicker.platform.pickFiles(
       type: FileType.image,
-      withData: true,
+      withData: false, // no need to load bytes
     );
+
     if (result != null) {
       setState(() {
         pickedImage = result.files.first;
@@ -27,7 +25,6 @@ class _BotChatState extends State<BotChat> {
     }
   }
 
-  // ui
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +43,6 @@ class _BotChatState extends State<BotChat> {
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
-            // select image
             GestureDetector(
               onTap: pickImage,
               child: pickedImage == null
@@ -69,11 +65,10 @@ class _BotChatState extends State<BotChat> {
                     )
                   : Column(
                       children: [
-                        // display selected image
                         ClipRRect(
                           borderRadius: BorderRadius.circular(30),
-                          child: Image.memory(
-                            pickedImage!.bytes!,
+                          child: Image.file(
+                            File(pickedImage!.path!),
                             height: 340,
                             fit: BoxFit.cover,
                           ),
@@ -96,7 +91,6 @@ class _BotChatState extends State<BotChat> {
                     ),
             ),
             const SizedBox(height: 20),
-            // prompt input
             TextField(
               decoration: InputDecoration(
                 hintText: 'Enter your prompt here',
@@ -110,14 +104,11 @@ class _BotChatState extends State<BotChat> {
               ),
             ),
             const SizedBox(height: 20),
-            // generate button
             ElevatedButton(
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
               ),
-              onPressed: () {
-                // TODO: Implement generate action
-              },
+              onPressed: () {},
               child: const Text(
                 'Generate Answer',
                 style: TextStyle(
