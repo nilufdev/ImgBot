@@ -32,7 +32,7 @@ class _BotChatState extends State<BotChat> {
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
-            // image section
+            // select image
             GestureDetector(
               onTap: () {}, 
               child: Container(
@@ -54,6 +54,23 @@ class _BotChatState extends State<BotChat> {
               ),
             ),
             
+            const SizedBox(height: 20),
+
+            // prompt input
+            TextField(
+              decoration: InputDecoration(
+                hintText: 'Enter your prompt here',
+                prefixIcon: const Icon(Icons.pending, color: Colors.black),
+                filled: true,
+                fillColor: Colors.grey[200],
+                border: OutLineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
+            
+            const SizedBox(height: 20),
           ]
         ),
       ),
