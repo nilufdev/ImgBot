@@ -22,7 +22,7 @@ class _BotChatState extends State<BotChat> {
     );
     if(result != null) {
       setState() {
-        pickedImage = result.files.first,
+        pickedImage = result.files.first;
       }
     }
   }
@@ -49,8 +49,8 @@ class _BotChatState extends State<BotChat> {
           children: [
             // select image
             GestureDetector(
-              onTap: () {}, 
-              child: Container(
+              onTap: pickImage,
+              child: pickedImage == null ? Container(
                 height: 340,
                 decoration: BoxDecoration(
                   color: Colors.black12,
@@ -66,6 +66,36 @@ class _BotChatState extends State<BotChat> {
                     ),
                   ),
                 ),
+              ),
+              : Column(
+                  children: [
+                    // display selected image
+                    ClipRect(
+                      borderRadius: BorderRadius.circular(30),
+                      child: Image.memory(
+                        pickedImage!.bytes!,
+                        height: 340,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    ElevatedButton(
+                      style: ElavatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                      ),
+                      onPressed: pickImage,
+                      child: const Text(
+                        'Select New Image',
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                    
+                  ],
               ),
             ),
             
