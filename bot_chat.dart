@@ -6,7 +6,7 @@ class BotChat extends StatefulWidget {
 
   @override
   State<BotChat> createState() {
-    return _BotChatState();
+    _BotChatState();
   }
 }
 
@@ -115,7 +115,9 @@ class _BotChatState extends State<BotChat> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
               ),
-              onPressed: () {},
+              onPressed: () {
+                // TODO: Implement generate action
+              },
               child: const Text(
                 'Generate Answer',
                 style: TextStyle(
