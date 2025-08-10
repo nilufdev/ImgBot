@@ -71,6 +71,23 @@ class _BotChatState extends State<BotChat> {
             ),
             
             const SizedBox(height: 20),
+
+            // generate button
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blue,
+              ),
+              // onPressed: 
+              child: const Text(
+                'Generate Answer',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 30),
           ]
         ),
       ),
